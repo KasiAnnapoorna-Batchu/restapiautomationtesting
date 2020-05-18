@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-05-18T14:57:12Z" name="Default suite" finished-at="2020-05-18T14:57:12Z" duration-ms="45">
+  <suite started-at="2020-05-18T15:38:42Z" name="Default suite" finished-at="2020-05-18T15:38:42Z" duration-ms="56">
     <groups>
     </groups>
-    <test started-at="2020-05-18T14:57:12Z" name="Default test" finished-at="2020-05-18T14:57:12Z" duration-ms="45">
-      <class name="api_json_parse_practice.Test_API_JSON_Parse">
-        <test-method signature="getJsonKeysAndValues()[pri:0, instance:api_json_parse_practice.Test_API_JSON_Parse@d21a74c]" started-at="2020-05-18T14:57:12Z" name="getJsonKeysAndValues" finished-at="2020-05-18T14:57:12Z" duration-ms="21" status="PASS">
+    <test started-at="2020-05-18T15:38:42Z" name="Default test" finished-at="2020-05-18T15:38:42Z" duration-ms="56">
+      <class name="api_json_parse_practice.TestAPIJSONParse">
+        <test-method signature="getJsonKeysAndValues()[pri:0, instance:api_json_parse_practice.TestAPIJSONParse@d21a74c]" started-at="2020-05-18T15:38:42Z" name="getJsonKeysAndValues" finished-at="2020-05-18T15:38:42Z" duration-ms="27" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getJsonKeysAndValues -->
-      </class> <!-- api_json_parse_practice.Test_API_JSON_Parse -->
+      </class> <!-- api_json_parse_practice.TestAPIJSONParse -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
