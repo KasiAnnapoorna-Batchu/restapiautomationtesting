@@ -14,7 +14,7 @@ import org.json.simple.parser.ParseException;
 import org.testng.annotations.Test;
 
 public class Test_API_JSON_Parse {
-	@Test
+	@Test(enabled=false)
 	public void getJsonKeysAndValues() throws FileNotFoundException, IOException, ParseException {
 
 		try {
