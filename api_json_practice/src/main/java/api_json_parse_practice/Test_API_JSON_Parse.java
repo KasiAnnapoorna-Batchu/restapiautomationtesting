@@ -14,12 +14,11 @@ import org.json.simple.parser.ParseException;
 import org.testng.annotations.Test;
 
 public class Test_API_JSON_Parse {
-	@Test(enabled=false)
+	@Test(enabled=true)
 	public void getJsonKeysAndValues() throws FileNotFoundException, IOException, ParseException {
 
 		try {
-			System.out.println(System.getProperty("user.dir"));
-			// Read config
+			// Read config from user directory.
 			FileReader reader = new FileReader(
 					(System.getProperty("user.dir") + "//src//main//java//config.properties"));
 			Properties p = new Properties();
@@ -32,9 +31,9 @@ public class Test_API_JSON_Parse {
 			// typecasting obj to JSONObject
 			JSONObject jo = (JSONObject) obj;
 
-			// getting company name.
+			// Get company name Details.
 			System.out.println("");
-			System.out.println("========= **** Getting Company Details **** ==========");
+			System.out.println("========= **** Company Details **** ==========");
 			String companyName = (String) jo.get("Company Name");
 			System.out.println("Company --> " + companyName);
 			String companyLocation = (String) jo.get("Company Location");
@@ -48,9 +47,11 @@ public class Test_API_JSON_Parse {
 			String contactNo = (String) jo.get("Contact no");
 			System.out.println("Contact No --> " + contactNo);
 			System.out.println("");
+			
+			// Get Branches info
 			System.out.println("****** Branches info *****");
-			// getting Branches info
 			Map branches = ((Map) jo.get("Branches"));
+			
 			// iterating branches Map
 			Iterator<Map.Entry> itr1 = branches.entrySet().iterator();
 			while (itr1.hasNext()) {
@@ -58,7 +59,7 @@ public class Test_API_JSON_Parse {
 				System.out.println(pair1.getKey() + " --> " + pair1.getValue());
 			}
 
-			// getting employee Details
+			// Get employee Details
 			Map employeeDetails = ((Map) jo.get("ATMECS Employee Details"));
 			JSONArray emp = (JSONArray) employeeDetails.get("emp Ids info");
 
@@ -69,7 +70,7 @@ public class Test_API_JSON_Parse {
 				JSONObject personalInfo1 = (JSONObject) emp.get(i);
 				Map perInfo = ((Map) personalInfo1.get("Personal Info"));
 				String fN = ((String) perInfo.get("First Name"));
-				System.out.println("****** Getting personal info of an employee - " + fN + "*****");
+				System.out.println("****** Personal info of an employee - " + fN + "*****");
 				Long id = (Long) personalInfo1.get("ID");
 				System.out.println("ID --> " + id);
 				System.out.println("First Name --> " + fN);
@@ -111,11 +112,11 @@ public class Test_API_JSON_Parse {
 					}
 				}
 
-				// Getting Professional info
+				// Get Professional info
 				JSONObject professionalInfo = (JSONObject) emp.get(i);
 				Map profInfo = ((Map) professionalInfo.get("Professional Info"));
 				System.out.println("");
-				System.out.println("****** Getting professional info of an employee - " + fN + " *****");
+				System.out.println("****** Professional info of an employee - " + fN + " *****");
 				String companyLoc = ((String) profInfo.get("Company Location"));
 				System.out.println("Company Location --> " + companyLocation);
 				String dj = ((String) profInfo.get("Date of Joining"));
@@ -129,6 +130,7 @@ public class Test_API_JSON_Parse {
 				String role = ((String) profInfo.get("Role"));
 				System.out.println("Designation --> " + role);
 				System.out.println();
+				
 				System.out.println("**** Techinical skills info **** ");
 				JSONArray technicalskill = (JSONArray) profInfo.get("Technical Skill set");
 				Iterator skills = technicalskill.iterator();
@@ -140,7 +142,6 @@ public class Test_API_JSON_Parse {
 
 					}
 				}
-
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
