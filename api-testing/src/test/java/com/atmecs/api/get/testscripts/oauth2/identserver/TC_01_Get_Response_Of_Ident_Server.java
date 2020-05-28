@@ -1,4 +1,4 @@
-package com.atmecs.api.get.testscripts;
+package com.atmecs.api.get.testscripts.oauth2.identserver;
 
 import static io.restassured.RestAssured.given;
 
@@ -20,10 +20,7 @@ import org.testng.annotations.Test;
 
 import com.atmecs.utility.parser.PropertiesParsers;
 
-import io.restassured.response.Response;
-
-public class TC_Get_Oauth2_Auth {
-
+public class TC_01_Get_Response_Of_Ident_Server {
 	private static final Pattern pat = Pattern.compile(".*\"access_token\"\\s*:\\s*\"([^\"]+)\".*");
 
 	static PropertiesParsers cf = new PropertiesParsers();
@@ -98,5 +95,4 @@ public class TC_Get_Oauth2_Auth {
 			e.printStackTrace();
 		}
 	}
-
 }
