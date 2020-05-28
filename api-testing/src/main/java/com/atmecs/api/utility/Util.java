@@ -5,38 +5,50 @@ import java.util.regex.Pattern;
 
 import com.jayway.jsonpath.JsonPath;
 
+/**
+ * 
+ * @author Kasi.Batchu
+ *
+ *         This class is created to code some reusable/common functions that are
+ *         frequently been used.
+ */
+
 public class Util {
-	
+
+	/**
+	 * Compiles JsonPath with expression that is passed.
+	 */
+
 	public JsonPath jsonCompile(String expression) {
 		// Compiles expression that is being passed.
 		JsonPath jsonValue = JsonPath.compile(expression);
 		return jsonValue;
 
 	}
-	
+
 	/**
-	 * Mob Num Length validatios
+	 * Mob Num Length validations
 	 */
-	public static boolean isMobileNoLengthValid(long mob) {
+	public static boolean getlength(long mob) {
 		int length = String.valueOf(mob).length();
 		int mobNolength = length - 1;
 		if (mobNolength == 10) {
-			System.out.println("Mobile Number length is as expected . It is equal to 10. ");
+			System.out.println("Number length is as expected . It is equal to 10. ");
 			System.out.println("");
 			return true;
 		}
-		System.out.println("Mobile Number length is not as expected. It is not equal to 10");
+		System.out.println("Number length is not as expected. It is not equal to 10");
 		System.out.println("");
 		return false;
 
 	}
 
-	/** 
+	/**
 	 * Mob No Character contains validation.
 	 */
-	public static boolean isMobileNoContainsChar(long mob) {
-		int length = String.valueOf(mob).length();
-		String str = String.valueOf(mob);
+	public static boolean NoContainsChar(long num) {
+		int length = String.valueOf(num).length();
+		String str = String.valueOf(num);
 
 		int count = 0;
 		for (int i = 0; i < length - 1; i++) {
@@ -49,19 +61,19 @@ public class Util {
 		}
 
 		if (count == 0) {
-			System.out.println("Mobile Number doesn't contain any Charcters");
+			System.out.println("Doesn't contain any Charcters");
 			return true;
 		}
 		return false;
 
 	}
 
-	/** 
+	/**
 	 * Mob No Spec Character contains validation.
 	 */
-	public static boolean isMobileNoContainsSpecChar(long mob) {
-		int length = String.valueOf(mob).length();
-		String str = String.valueOf(mob);
+	public static boolean isMobileNoContainsSpecChar(long num) {
+		int length = String.valueOf(num).length();
+		String str = String.valueOf(num);
 		Pattern pattern = Pattern.compile("[a-zA-Z0-9]*");
 
 		Matcher matcher = pattern.matcher(str);
@@ -76,8 +88,8 @@ public class Util {
 
 	}
 
-	/** 
-	 *Password Length validations.
+	/**
+	 * Password Length validations.
 	 */
 	public static boolean isPswdLength(String pswd) {
 		if ((pswd.length() >= 8) && (pswd.length() < 15)) {
@@ -91,63 +103,67 @@ public class Util {
 
 	/**
 	 * Upper Case Letter Validation.
+	 * 
 	 * @param pswd
 	 * @return
 	 */
-	public static boolean isContainsAtleatOneUpperCase(String pswd) {
+	public static boolean isContainsAtleatOneUpperCase(String sr) {
 		String upperCaseChars = "(.*[A-Z].*)";
-		if (!pswd.matches(upperCaseChars)) {
-			System.out.println("Password should contain atleast one upper case alphabet");
+		if (!sr.matches(upperCaseChars)) {
+			System.out.println(" Should contain atleast one upper case alphabet");
 			return false;
 		}
-		System.out.println("Password contains atleast one upper case alphabet as Expected");
+		System.out.println(" Contains atleast one upper case alphabet as Expected");
 		return true;
 	}
+
 	/**
 	 * Lower Case Letter Validation
+	 * 
 	 * @param pswd
 	 * @return
 	 */
 
-	public static boolean isContainsAtleatOneLowerCase(String pswd) {
+	public static boolean isContainsAtleatOneLowerCase(String sr) {
 		String lowerCaseChars = "(.*[a-z].*)";
-		if (!pswd.matches(lowerCaseChars)) {
-			System.out.println("Password should contain atleast one lower case alphabet");
+		if (!sr.matches(lowerCaseChars)) {
+			System.out.println("Should contain atleast one lower case alphabet");
 			return false;
 		}
-		System.out.println("Password contains atleast one lower case alphabet as Expected");
+		System.out.println("Contains atleast one lower case alphabet as Expected");
 		return true;
 	}
 
 	/**
 	 * Number Contaions Validations.
+	 * 
 	 * @param pswd
 	 * @return
 	 */
-	public static boolean isContainsAtleatOneNumber(String pswd) {
+	public static boolean isContainsAtleatOneNumber(String sr) {
 		String numbers = "(.*[0-9].*)";
-		if (!pswd.matches(numbers)) {
-			System.out.println("Password should contain atleast one number.");
+		if (!sr.matches(numbers)) {
+			System.out.println("Should contain atleast one number.");
 			return false;
 		}
-		System.out.println("Password contains atleast one number as Expected");
+		System.out.println("Contains atleast one number as Expected");
 		return true;
 	}
-	
+
 	/**
 	 * Special Char contain Validations.
+	 * 
 	 * @param pswd
 	 * @return
 	 */
-	public static boolean isContainsAtleatOneSpecChar(String pswd) {
-		   String specialChars = "(.*[,~,!,@,#,$,%,^,&,*,(,),-,_,=,+,[,{,],},|,;,:,<,>,/,?].*$)";
-		   if (!pswd.matches(specialChars)) {
-			   System.out.println("Password should contain atleast one special character");
-				return false;
-			}
-			System.out.println("Password contains atleast one special character as Expected");
-			return true;
+	public static boolean isContainsAtleatOneSpecChar(String sr) {
+		String specialChars = "(.*[,~,!,@,#,$,%,^,&,*,(,),-,_,=,+,[,{,],},|,;,:,<,>,/,?].*$)";
+		if (!sr.matches(specialChars)) {
+			System.out.println("Password should contain atleast one special character");
+			return false;
+		}
+		System.out.println("Password contains atleast one special character as Expected");
+		return true;
 	}
-
 
 }
