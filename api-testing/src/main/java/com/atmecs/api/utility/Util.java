@@ -9,8 +9,8 @@ import com.jayway.jsonpath.JsonPath;
  * 
  * @author Kasi.Batchu
  *
- *         This class is created to code some reusable/common functions that are
- *         frequently been used.
+ * This class is created to code some reusable/common functions that are
+ * frequently been used.
  */
 
 public class Util {

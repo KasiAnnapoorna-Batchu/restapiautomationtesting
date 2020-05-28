@@ -13,24 +13,42 @@ import com.atmecs.utility.parser.PropertiesParsers;
 import com.jayway.jsonpath.JsonPath;
 
 import io.restassured.response.Response;
-
+/**
+ * 
+ * @author Kasi.Batchu
+ * This class is written to test missing query parameter
+ * error using get operation.
+ */
 public class TC_03_Get_Test_Missing_Query_Error {
 	PropertiesParsers cf = new PropertiesParsers();
 
+	/**
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws Exception
+	 * Using get operation, verify whether missing query 
+	 * parameter error is occurred or not when no param 
+	 * value is provided. 
+	 */
 	@Test
 	public void getMissingQueryError() throws FileNotFoundException, Exception {
 		try {
+			// Load config
 			cf.loadConfig();
+			// Get key Values from properties file.
 			String booksBaseURI = cf.setConfig("BooksBaseURI");
 			String errormsg = cf.setConfig("errormsg");
 			String errorlocation = cf.setConfig("errorlocation");
-
+			// Operation to perform response from request.
 			Response response = given().param("q", "").when().get(booksBaseURI);
+			// Validate status code.
 			Assert.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_400.getValue(),
 					"INFO: Status Code Validation Failed.");
+			
 			String errorMessage = JsonPath.read(response.asString(), errormsg);
 			String paramName = JsonPath.read(response.asString(), errorlocation);
-
+			
+			// Validates query parameter missing error
 			Assert.assertTrue(errorMessage.equals("Missing query.") && paramName.equals("q"),
 					"Search Query Parameter Missing Error should be displayed");
 		} catch (FileNotFoundException fe) {

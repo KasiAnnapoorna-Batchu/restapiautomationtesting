@@ -12,8 +12,10 @@ import org.testng.Reporter;
  * 
  * @author Kasi.Batchu
  *
- *         This class is created to parse property file.
+ * This class is created to parse property file.
+ * 
  */
+
 public class PropertiesParsers {
 	public static Properties LCF = null;
 	public static Properties PROPFILE = null;

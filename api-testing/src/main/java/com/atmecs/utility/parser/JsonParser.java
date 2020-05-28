@@ -7,6 +7,7 @@ import java.io.IOException;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.testng.Reporter;
+
 /**
  * 
  * @author Kasi.Batchu
@@ -15,7 +16,7 @@ import org.testng.Reporter;
  * 
  */
 public class JsonParser {
-	private JSONParser parser = new JSONParser();
+
 	public static String jsonString;
 
 	/**
@@ -29,7 +30,7 @@ public class JsonParser {
 	public String getAndReadJsonFile(String JsonFilePath) throws FileNotFoundException, IOException, ParseException {
 
 		try {
-						
+
 			// Validates whether the file type is JSON or not.
 			if (!JsonFilePath.contains(".json")) {
 				throw new Exception("File Type is not JSON");
@@ -42,8 +43,8 @@ public class JsonParser {
 			Reporter.log("File is not found in specified path: " + fe.getMessage());
 			fe.printStackTrace();
 		} catch (ParseException pe) {
-			Reporter.log("File is not found in specified path: " + pe.getMessage());Reporter.log(
-					"Parsing from file data to JSONObject is not take place properly: " + pe.getMessage());
+			Reporter.log("File is not found in specified path: " + pe.getMessage());
+			Reporter.log("Parsing from file data to JSONObject is not take place properly: " + pe.getMessage());
 
 			pe.printStackTrace();
 		} catch (Exception e) {
