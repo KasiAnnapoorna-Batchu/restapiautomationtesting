@@ -7,7 +7,13 @@ import java.io.IOException;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.testng.Reporter;
-
+/**
+ * 
+ * @author Kasi.Batchu
+ *
+ * This is class is created to perform json parsing.
+ * 
+ */
 public class JsonParser {
 	private JSONParser parser = new JSONParser();
 	public static String jsonString;
