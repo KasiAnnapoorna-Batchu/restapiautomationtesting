@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="API TESTING">
+
+	<test name="Test Cases of for GET end points with Diff Auth">
+		<classes>
+			<class
+				name="com.atmecs.api.get.testscripts.TC_Get_No_Auth" />
+			<class
+				name="com.atmecs.api.get.testscripts.TC_Get_Oauth2_Auth" />
+			<class
+				name="com.atmecs.api.get.testscripts.TC_Get_Perform_API_Key_Auth" />
+		</classes>
+	</test>
+
+</suite>
+
