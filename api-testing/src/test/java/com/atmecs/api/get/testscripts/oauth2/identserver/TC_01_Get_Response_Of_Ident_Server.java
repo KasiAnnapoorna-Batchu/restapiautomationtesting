@@ -24,15 +24,23 @@ import com.atmecs.utility.parser.PropertiesParsers;
 
 import io.restassured.response.Response;
 
+/**
+ * 
+ * @author Kasi.Batchu
+ * This class is written to get response from ident server
+ * using oauth2 authentication.
+ */
 public class TC_01_Get_Response_Of_Ident_Server {
 	private static final Pattern pat = Pattern.compile(".*\"access_token\"\\s*:\\s*\"([^\"]+)\".*");
 
 	static PropertiesParsers cf = new PropertiesParsers();
-
+	
+    // Returns a new token every time when it is been called. 
 	private static String getClientCredentials() throws FileNotFoundException, Exception {
 		
 		// Load config
 		cf.loadConfig();
+		
 		// Get key Values from properties file.
 		String tokenUrl = cf.setConfig("tokenurl");
 		String clientId = cf.setConfig("clientIdVal");// clientId
@@ -41,8 +49,8 @@ public class TC_01_Get_Response_Of_Ident_Server {
 		String authentication = Base64.getEncoder().encodeToString(auth.getBytes());
 		String urlencoded = cf.setConfig("urlencoded");
 		String jsonaccepts = cf.setConfig("jsonaccepts");
-
 		String content = "grant_type=client_credentials";
+		
 		BufferedReader reader = null;
 		HttpsURLConnection connection = null;
 		String returnValue = "";
