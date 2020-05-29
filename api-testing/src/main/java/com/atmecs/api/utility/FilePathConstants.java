@@ -20,5 +20,10 @@ public class FilePathConstants {
 
 	public static final String TESTDATA_FILE_PATH = USER_DIR + File.separator + "src" + File.separator + "main"
 			+ File.separator + "resources" + File.separator + "testdata.properties";
+	public static final String TYPICODE_PAYLOAD = USER_DIR + File.separator + "src" + File.separator + "test"
+			+ File.separator + "resources" + File.separator + "testdata"+ File.separator+ "postpayload"+ File.separator + "typicodepayload.json";
+	
+	
+	
 
 }

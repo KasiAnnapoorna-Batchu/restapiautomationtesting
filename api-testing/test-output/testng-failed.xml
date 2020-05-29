@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.atmecs.api.get.testscripts.oauth2.identserver.TC_01_Get_Response_Of_Ident_Server">
+      <class name="com.atmecs.api.put.testscripts.TC_01_Put_Operation">
         <methods>
-          <include name="getResponseUsingOAuth2"/>
+          <include name="putUpdateRecords"/>
         </methods>
-      </class> <!-- com.atmecs.api.get.testscripts.oauth2.identserver.TC_01_Get_Response_Of_Ident_Server -->
+      </class> <!-- com.atmecs.api.put.testscripts.TC_01_Put_Operation -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,7 +1,14 @@
 package com.atmecs.api.utility;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import com.jayway.jsonpath.JsonPath;
 
@@ -24,6 +31,17 @@ public class Util {
 		JsonPath jsonValue = JsonPath.compile(expression);
 		return jsonValue;
 
+	}
+	
+	// This is utility Method which returns JSONObject from String
+	// representation of JSON.
+	public static JSONObject getJSONObjectfromString(String json) throws ParseException {
+		return (JSONObject) new JSONParser().parse(json);
+	}
+
+	public static JSONObject getJSONObjectFromFilePath(String filePath)
+			throws FileNotFoundException, IOException, ParseException {
+		return (JSONObject) new JSONParser().parse(new FileReader(filePath));
 	}
 
 	/**

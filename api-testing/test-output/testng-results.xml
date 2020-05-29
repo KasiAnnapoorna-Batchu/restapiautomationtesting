@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-05-28T19:46:34Z" name="Default suite" finished-at="2020-05-28T19:46:39Z" duration-ms="4350">
+  <suite started-at="2020-05-29T16:22:20Z" name="Default suite" finished-at="2020-05-29T16:22:37Z" duration-ms="16747">
     <groups>
     </groups>
-    <test started-at="2020-05-28T19:46:34Z" name="Default test" finished-at="2020-05-28T19:46:39Z" duration-ms="4350">
-      <class name="com.atmecs.api.get.testscripts.oauth2.identserver.TC_01_Get_Response_Of_Ident_Server">
-        <test-method signature="getResponseUsingOAuth2()[pri:0, instance:com.atmecs.api.get.testscripts.oauth2.identserver.TC_01_Get_Response_Of_Ident_Server@57250572]" started-at="2020-05-28T19:46:34Z" name="getResponseUsingOAuth2" finished-at="2020-05-28T19:46:39Z" duration-ms="4321" status="PASS">
+    <test started-at="2020-05-29T16:22:20Z" name="Default test" finished-at="2020-05-29T16:22:37Z" duration-ms="16747">
+      <class name="com.atmecs.api.put.testscripts.TC_01_Put_Operation">
+        <test-method signature="putUpdateRecords()[pri:0, instance:com.atmecs.api.put.testscripts.TC_01_Put_Operation@610f7aa]" started-at="2020-05-29T16:22:20Z" name="putUpdateRecords" finished-at="2020-05-29T16:22:37Z" duration-ms="16715" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- getResponseUsingOAuth2 -->
-      </class> <!-- com.atmecs.api.get.testscripts.oauth2.identserver.TC_01_Get_Response_Of_Ident_Server -->
+        </test-method> <!-- putUpdateRecords -->
+      </class> <!-- com.atmecs.api.put.testscripts.TC_01_Put_Operation -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

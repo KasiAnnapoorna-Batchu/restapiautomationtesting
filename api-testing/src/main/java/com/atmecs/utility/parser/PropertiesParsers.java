@@ -75,7 +75,7 @@ public class PropertiesParsers {
 	 * 
 	 */
 
-	public static String setKey(String key) {
+	public String setKey(String key) {
 
 		return PROPFILE.getProperty(key);
 
