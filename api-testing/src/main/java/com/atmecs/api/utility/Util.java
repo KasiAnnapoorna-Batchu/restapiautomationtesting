@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 import com.jayway.jsonpath.JsonPath;
 
@@ -16,8 +18,8 @@ import com.jayway.jsonpath.JsonPath;
  * 
  * @author Kasi.Batchu
  *
- * This class is created to code some reusable/common functions that are
- * frequently been used.
+ *         This class is created to code some reusable/common functions that are
+ *         frequently been used.
  */
 
 public class Util {
@@ -32,7 +34,7 @@ public class Util {
 		return jsonValue;
 
 	}
-	
+
 	// This is utility Method which returns JSONObject from String
 	// representation of JSON.
 	public static JSONObject getJSONObjectfromString(String json) throws ParseException {
@@ -42,6 +44,34 @@ public class Util {
 	public static JSONObject getJSONObjectFromFilePath(String filePath)
 			throws FileNotFoundException, IOException, ParseException {
 		return (JSONObject) new JSONParser().parse(new FileReader(filePath));
+	}
+
+	public String validateContentType(String contType) {
+
+		// String contentType = response.header("Content-Type");
+		if (contType.contains("charset=UTF-8"))
+			;
+		{
+			Reporter.log("Found charset= UTF-8 in content type");
+			contType = contType.replaceAll("\\ charset=UTF-8", "");
+		}
+		return contType;
+	}
+
+	public void validateResponseHeaders(String actualcontType, String actualContEncoding, String expContectType,
+			String expContEncoding) {
+		if (actualcontType.contains("charset=UTF-8"));
+		{
+			Reporter.log("Found charset= UTF-8 in content type");
+			actualcontType = actualcontType.replaceAll("\\ charset=UTF-8", "");
+		}
+		Reporter.log("Actaul Content Type : " + actualcontType);
+		Assert.assertEquals(actualcontType /* actual value */, expContectType /* expected value */);
+
+		// Reader header of a give name. In this line we will get
+		// Header named Content-Encoding
+		Reporter.log("Actual Content Encoding : " + actualContEncoding);
+		Assert.assertEquals(actualContEncoding /* actual value */, expContEncoding /* expected value */);
 	}
 
 	/**

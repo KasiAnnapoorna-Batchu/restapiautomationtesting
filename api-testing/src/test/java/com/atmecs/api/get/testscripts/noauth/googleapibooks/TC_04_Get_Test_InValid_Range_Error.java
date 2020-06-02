@@ -8,7 +8,9 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
+import com.atmecs.api.utility.FilePathConstants;
 import com.atmecs.api.utility.STATUS_CODE;
+import com.atmecs.api.utility.Util;
 import com.atmecs.utility.parser.PropertiesParsers;
 import com.jayway.jsonpath.JsonPath;
 
@@ -22,7 +24,7 @@ import io.restassured.response.Response;
  *
  */
 public class TC_04_Get_Test_InValid_Range_Error {
-	PropertiesParsers cf = new PropertiesParsers();
+	
 
 	/**
 	 * 
@@ -33,26 +35,38 @@ public class TC_04_Get_Test_InValid_Range_Error {
 	 * range.
 	 * 
 	 */
+	PropertiesParsers prop = new PropertiesParsers();
+	Util util = new Util();
+	
 	@Test
 	public void GetInvalidRangeError() throws FileNotFoundException, Exception {
 		try {
+			String tdf = (FilePathConstants.TESTDATA_FILE_PATH);
+			// Load specified property file.
+			prop.loadProperty(tdf);
 			// Load config
-			cf.loadConfig();
+			prop.loadConfig();
 			// Get key Values from properties file.
-			String booksBaseURI = cf.setConfig("BooksBaseURI");
-			String country = cf.setConfig("country");
-			String invalidrange = cf.setConfig("invalidrange");
-			String errormsg = cf.setConfig("errormsg");
-			String errorlocation = cf.setConfig("errorlocation");
-			// Operation to perform response from request.
+			String booksBaseURI = prop.setConfig("BooksBaseURI");
+			String country = prop.setKey("country");
+			String invalidrange = prop.setKey("invalidrange");
+			String errormsg = prop.setKey("errormsg");
+			String errorlocation = prop.setKey("errorlocation");
+			
+			// Create Request.
+			// Operation to get response from request.
+			Reporter.log(" Create Request to get response ");
 			Response response = given().param("q", country).param("maxResults", invalidrange).when().get(booksBaseURI);
+						
 			// Validate status code.
+			Reporter.log("Status Code: "+ response.getStatusCode());
 			Assert.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_400.getValue(),
 					"INFO: Status Code Validation Failed.");
 
 			String errorMessage = JsonPath.read(response.asString(), errormsg);
 			String paramName = JsonPath.read(response.asString(), errorlocation);
 			
+			Reporter.log("Validate Invalid range error");
 			// Validates invalid range error.
 			Assert.assertTrue(
 					errorMessage.contains("Values must be within the range: [0, 40]") && paramName.equals("maxResults"),

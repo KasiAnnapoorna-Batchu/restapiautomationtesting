@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.atmecs.api.put.testscripts.TC_01_Put_Operation">
+      <class name="com.atmecs.api.get.testscripts.noauth.googleapibooks.TC_02_Get_Books_Max_Result">
         <methods>
-          <include name="putUpdateRecords"/>
+          <include name="getBooksMaxResult"/>
         </methods>
-      </class> <!-- com.atmecs.api.put.testscripts.TC_01_Put_Operation -->
+      </class> <!-- com.atmecs.api.get.testscripts.noauth.googleapibooks.TC_02_Get_Books_Max_Result -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
