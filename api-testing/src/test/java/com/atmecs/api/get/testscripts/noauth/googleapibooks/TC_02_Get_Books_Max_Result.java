@@ -22,7 +22,9 @@ import io.restassured.response.Response;
  * @author Kasi.Batchu This class is written to get books max count.
  */
 public class TC_02_Get_Books_Max_Result {
-	;
+	
+	PropertiesParsers prop = new PropertiesParsers();
+	Util util = new Util();
 
 	/**
 	 * 
@@ -30,9 +32,7 @@ public class TC_02_Get_Books_Max_Result {
 	 * @throws Exception
 	 *             Get Books Maximum count.
 	 */
-	PropertiesParsers prop = new PropertiesParsers();
-	Util util = new Util();
-
+	
 	@Test
 	public void getAndTestBooksMaxCount() throws FileNotFoundException, Exception {
 		try {
@@ -62,13 +62,15 @@ public class TC_02_Get_Books_Max_Result {
 				Assert.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_200.getValue(),
 						"INFO: Status Code Validation Failed.");
 
+				// Validate Response Headers.
+				Reporter.log("Validating Content Type & Content Encoding Values");
 				String actContentType = response.header("Content-Type");
 				String actContentEncoding = response.header("Content-Encoding");
 
 				util.validateResponseHeaders(actContentType, actContentEncoding, expContectType, expContEncoding);
 
 				List<Object> allBooks = JsonPath.read(response.asString(), items);
-				Reporter.log("Validate actual books size with expected");				
+				Reporter.log("Validating actual books size with expected");				
 				Reporter.log("Actual Books size : "+allBooks.size());
 								
 				// Validates actual max book count with expected.

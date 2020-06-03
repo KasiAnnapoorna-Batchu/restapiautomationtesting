@@ -24,8 +24,8 @@ import io.restassured.response.Response;
  *
  */
 public class TC_04_Get_Test_InValid_Range_Error {
-	
-
+	PropertiesParsers prop = new PropertiesParsers();
+	Util util = new Util();
 	/**
 	 * 
 	 * @throws FileNotFoundException
@@ -35,9 +35,7 @@ public class TC_04_Get_Test_InValid_Range_Error {
 	 * range.
 	 * 
 	 */
-	PropertiesParsers prop = new PropertiesParsers();
-	Util util = new Util();
-	
+		
 	@Test
 	public void GetInvalidRangeError() throws FileNotFoundException, Exception {
 		try {
@@ -52,6 +50,8 @@ public class TC_04_Get_Test_InValid_Range_Error {
 			String invalidrange = prop.setKey("invalidrange");
 			String errormsg = prop.setKey("errormsg");
 			String errorlocation = prop.setKey("errorlocation");
+			String expContectType = prop.setKey("contectType");
+			String expContEncoding = prop.setKey("Content-Encoding");
 			
 			// Create Request.
 			// Operation to get response from request.
@@ -63,10 +63,17 @@ public class TC_04_Get_Test_InValid_Range_Error {
 			Assert.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_400.getValue(),
 					"INFO: Status Code Validation Failed.");
 
+			// Validate Response Headers.
+			Reporter.log("Validating Content Type & Content Encoding Values");
+			String actContentType = response.header("Content-Type");
+			String actContentEncoding = response.header("Content-Encoding");
+
+			util.validateResponseHeaders(actContentType, actContentEncoding, expContectType, expContEncoding);
+			
 			String errorMessage = JsonPath.read(response.asString(), errormsg);
 			String paramName = JsonPath.read(response.asString(), errorlocation);
 			
-			Reporter.log("Validate Invalid range error");
+			Reporter.log("Validating Invalid range error");
 			// Validates invalid range error.
 			Assert.assertTrue(
 					errorMessage.contains("Values must be within the range: [0, 40]") && paramName.equals("maxResults"),

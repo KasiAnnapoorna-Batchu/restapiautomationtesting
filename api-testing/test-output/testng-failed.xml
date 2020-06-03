@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.atmecs.api.get.testscripts.noauth.googleapibooks.TC_02_Get_Books_Max_Result">
+      <class name="com.atmecs.api.get.testscripts.oauth2.identserver.TC_01_Get_Response_Of_Ident_Server">
         <methods>
-          <include name="getBooksMaxResult"/>
+          <include name="postTask"/>
         </methods>
-      </class> <!-- com.atmecs.api.get.testscripts.noauth.googleapibooks.TC_02_Get_Books_Max_Result -->
+      </class> <!-- com.atmecs.api.get.testscripts.oauth2.identserver.TC_01_Get_Response_Of_Ident_Server -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -30,6 +30,8 @@ import io.restassured.response.Response;
  */
 
 public class TC_01_Get_Books_Count {
+	PropertiesParsers prop = new PropertiesParsers();
+	static Util util = new Util();
 	
 	/**
 	 *
@@ -39,9 +41,7 @@ public class TC_01_Get_Books_Count {
 	 * know whether the count gotten is correct or not.
 	 * 
 	 */
-	PropertiesParsers prop = new PropertiesParsers();
-	static Util util = new Util();
-
+	
 	@Test
 	public void getAndTestBooksItemsCount() throws FileNotFoundException, Exception {
 		try {
@@ -66,20 +66,22 @@ public class TC_01_Get_Books_Count {
 			Reporter.log(" Create Request to get response");
 			
 			Response response = given().param("q", parampottervalue).when().get(booksBaseURI);
-			
+			System.out.println(response.asString());
 			if (response != null) {
 				// Validate status code.
 				Reporter.log("Status Code: "+ response.getStatusCode());
 				Assert.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_200.getValue(),
 						"INFO: Status Code Validation Failed.");
 				
+				// Validate Response Headers.
+				Reporter.log("Validating Content Type & Content Encoding Values");
 				String actContentType = response.header("Content-Type");
 				String actContentEncoding = response.header("Content-Encoding");
 				util.validateResponseHeaders(actContentType, actContentEncoding, expContectType, expContEncoding);
 
 				int totalItems = JsonPath.read(response.asString(), totalitems);
 				// Validate whether the count is greater than zero or not.
-				Reporter.log("Validate the total no of items is greater than zero or not");				
+				Reporter.log("Validating total no of items is greater than zero or not");				
 				Reporter.log("Total No of items : " + totalItems);				
 				Assert.assertTrue(totalItems > 0, "Total Items should be greater than 0");
 			}

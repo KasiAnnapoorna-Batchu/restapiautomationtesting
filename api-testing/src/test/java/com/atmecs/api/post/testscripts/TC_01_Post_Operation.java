@@ -32,7 +32,7 @@ public class TC_01_Post_Operation {
 	static PropertiesParsers cf = new PropertiesParsers();
 	static Util util = new Util();
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public static void TC_01_Post_TypiCode() throws Exception {
 
 		String tdf = (FilePathConstants.TESTDATA_FILE_PATH);
@@ -90,7 +90,7 @@ public class TC_01_Post_Operation {
 
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public static void TC_01_Post_Ipsum_Register() {
 
 		try {

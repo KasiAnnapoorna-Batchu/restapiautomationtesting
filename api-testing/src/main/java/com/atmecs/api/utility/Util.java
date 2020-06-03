@@ -60,17 +60,20 @@ public class Util {
 
 	public void validateResponseHeaders(String actualcontType, String actualContEncoding, String expContectType,
 			String expContEncoding) {
-		if (actualcontType.contains("charset=UTF-8"));
+		if (actualcontType.contains("charset=UTF-8") || actualcontType.contains("charset=utf-8"));
 		{
 			Reporter.log("Found charset= UTF-8 in content type");
 			actualcontType = actualcontType.replaceAll("\\ charset=UTF-8", "");
+			actualcontType = actualcontType.replaceAll("\\ charset=utf-8", "");
 		}
 		Reporter.log("Actaul Content Type : " + actualcontType);
+		Reporter.log("Expcted Content Type :"+expContectType);
 		Assert.assertEquals(actualcontType /* actual value */, expContectType /* expected value */);
 
 		// Reader header of a give name. In this line we will get
 		// Header named Content-Encoding
 		Reporter.log("Actual Content Encoding : " + actualContEncoding);
+		Reporter.log("Expected Content Encoding Val" + expContEncoding);
 		Assert.assertEquals(actualContEncoding /* actual value */, expContEncoding /* expected value */);
 	}
 
