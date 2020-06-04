@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.atmecs.api.get.testscripts.TC_01_Get_Oauth2_Auth">
+      <class name="com.atmecs.api.testscripts.post.apikey.ipsur.TC_01_Create_New_Register_Ipsum">
         <methods>
-          <include name="useBearerToken"/>
+          <include name="TC_01_Post_Ipsum_Register"/>
         </methods>
-      </class> <!-- com.atmecs.api.get.testscripts.TC_01_Get_Oauth2_Auth -->
+      </class> <!-- com.atmecs.api.testscripts.post.apikey.ipsur.TC_01_Create_New_Register_Ipsum -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

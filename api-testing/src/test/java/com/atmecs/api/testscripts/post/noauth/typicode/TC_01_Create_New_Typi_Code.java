@@ -1,5 +1,5 @@
 
-package com.atmecs.api.testscripts.post.oauth2;
+package com.atmecs.api.testscripts.post.noauth.typicode;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -19,7 +19,7 @@ import com.atmecs.utility.parser.PropertiesParsers;
 
 public class TC_01_Create_New_Typi_Code {
 
-	static PropertiesParsers cf = new PropertiesParsers();
+	static PropertiesParsers prop = new PropertiesParsers();
 	static Util util = new Util();
 
 	@Test(enabled = true)
@@ -27,14 +27,14 @@ public class TC_01_Create_New_Typi_Code {
 
 		String tdf = (FilePathConstants.TESTDATA_FILE_PATH);
 		// Load specified property file.
-		cf.loadProperty(tdf);
+		prop.loadProperty(tdf);
 		// Load config
-		cf.loadConfig();
+		prop.loadConfig();
 
 		// Get key Values from properties file.
-		String typiCodeBaseURI = cf.setConfig("TypiCodeBaseURI");
-		String useridval = cf.setConfig("useridval");
-		String jsonaccepts = cf.setConfig("jsonaccepts");
+		String typiCodeBaseURI = prop.setConfig("TypiCodeBaseURI");
+		String useridval = prop.setKey("useridval");
+		String jsonaccepts = prop.setKey("jsonaccepts");
 		try {
 			JSONObject typiCodePayLoad = util.getJSONObjectFromFilePath(FilePathConstants.TYPICODE_PAYLOAD);
 			String typiCodePayLoadStr = typiCodePayLoad.toString();
