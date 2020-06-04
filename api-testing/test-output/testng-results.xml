@@ -2,100 +2,40 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[ Create Request to get response]]>
+      <![CDATA[POST Response Code :  201]]>
     </line>
     <line>
-      <![CDATA[Validating Content Type & Content Encoding Values]]>
+      <![CDATA[POST Response Message : Created]]>
     </line>
     <line>
-      <![CDATA[Actaul Content Type : application/json;]]>
+      <![CDATA[POST Worked ]]>
     </line>
     <line>
-      <![CDATA[Expcted Content Type :application/json;]]>
-    </line>
-    <line>
-      <![CDATA[Actual Content Encoding : gzip]]>
-    </line>
-    <line>
-      <![CDATA[Expected Content Encoding Valgzip]]>
-    </line>
-    <line>
-      <![CDATA[Content Type and Content Encoding Validation : Passed]]>
-    </line>
-    <line>
-      <![CDATA[Validating Status Code]]>
-    </line>
-    <line>
-      <![CDATA[Actual Status Code :200]]>
-    </line>
-    <line>
-      <![CDATA[Expected Status Code:  200]]>
-    </line>
-    <line>
-      <![CDATA[Actual Place Id = ["ChIJkeO_AzquEmsRUpGQn1ZK7Tg"]]]>
-    </line>
-    <line>
-      <![CDATA[Expected Placce Id= ChIJkeO_AzquEmsRUpGQn1ZK7Tg]]>
-    </line>
-    <line>
-      <![CDATA[Near By Place Found Based on the location provided]]>
-    </line>
-    <line>
-      <![CDATA[Get - Worked]]>
+      <![CDATA[{  "id": 101}]]>
     </line>
   </reporter-output>
-  <suite started-at="2020-06-04T19:42:03Z" name="Default suite" finished-at="2020-06-04T19:42:07Z" duration-ms="3674">
+  <suite started-at="2020-06-04T19:54:43Z" name="Default suite" finished-at="2020-06-04T19:54:46Z" duration-ms="2726">
     <groups>
     </groups>
-    <test started-at="2020-06-04T19:42:03Z" name="Default test" finished-at="2020-06-04T19:42:07Z" duration-ms="3674">
-      <class name="com.atmecs.api.testscripts.get.apikey.googlemaps.TC_01_Get_NearBy_Search">
-        <test-method signature="TC_01_GetNearByPlace()[pri:0, instance:com.atmecs.api.testscripts.get.apikey.googlemaps.TC_01_Get_NearBy_Search@55740540]" started-at="2020-06-04T19:42:03Z" name="TC_01_GetNearByPlace" finished-at="2020-06-04T19:42:07Z" duration-ms="3622" status="PASS">
+    <test started-at="2020-06-04T19:54:43Z" name="Default test" finished-at="2020-06-04T19:54:46Z" duration-ms="2726">
+      <class name="com.atmecs.api.testscripts.post.oauth2.TC_01_Create_New_Typi_Code">
+        <test-method signature="TC_01_Post_TypiCode()[pri:0, instance:com.atmecs.api.testscripts.post.oauth2.TC_01_Create_New_Typi_Code@55740540]" started-at="2020-06-04T19:54:43Z" name="TC_01_Post_TypiCode" finished-at="2020-06-04T19:54:46Z" duration-ms="2687" status="PASS">
           <reporter-output>
             <line>
-              <![CDATA[ Create Request to get response]]>
+              <![CDATA[POST Response Code :  201]]>
             </line>
             <line>
-              <![CDATA[Validating Content Type & Content Encoding Values]]>
+              <![CDATA[POST Response Message : Created]]>
             </line>
             <line>
-              <![CDATA[Actaul Content Type : application/json;]]>
+              <![CDATA[POST Worked ]]>
             </line>
             <line>
-              <![CDATA[Expcted Content Type :application/json;]]>
-            </line>
-            <line>
-              <![CDATA[Actual Content Encoding : gzip]]>
-            </line>
-            <line>
-              <![CDATA[Expected Content Encoding Valgzip]]>
-            </line>
-            <line>
-              <![CDATA[Content Type and Content Encoding Validation : Passed]]>
-            </line>
-            <line>
-              <![CDATA[Validating Status Code]]>
-            </line>
-            <line>
-              <![CDATA[Actual Status Code :200]]>
-            </line>
-            <line>
-              <![CDATA[Expected Status Code:  200]]>
-            </line>
-            <line>
-              <![CDATA[Actual Place Id = ["ChIJkeO_AzquEmsRUpGQn1ZK7Tg"]]]>
-            </line>
-            <line>
-              <![CDATA[Expected Placce Id= ChIJkeO_AzquEmsRUpGQn1ZK7Tg]]>
-            </line>
-            <line>
-              <![CDATA[Near By Place Found Based on the location provided]]>
-            </line>
-            <line>
-              <![CDATA[Get - Worked]]>
+              <![CDATA[{  "id": 101}]]>
             </line>
           </reporter-output>
-        </test-method> <!-- TC_01_GetNearByPlace -->
-      </class> <!-- com.atmecs.api.testscripts.get.apikey.googlemaps.TC_01_Get_NearBy_Search -->
+        </test-method> <!-- TC_01_Post_TypiCode -->
+      </class> <!-- com.atmecs.api.testscripts.post.oauth2.TC_01_Create_New_Typi_Code -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
