@@ -1,4 +1,4 @@
-package com.atmecs.api.testscripts.post.oauth2.googleapitasks;
+package com.atmecs.api.testscripts.put.oauth2.googleapitasks;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
