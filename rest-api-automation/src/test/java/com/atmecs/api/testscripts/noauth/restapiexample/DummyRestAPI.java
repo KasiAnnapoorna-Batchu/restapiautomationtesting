@@ -1,5 +1,5 @@
 
-package com.atmecs.api.testscripts.post.noauth.restapiexample;
+package com.atmecs.api.testscripts.noauth.restapiexample;
 
 import static io.restassured.RestAssured.given;
 
@@ -21,14 +21,29 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
+/**
+ * 
+ * @author Kasi.Batchu
+ * This rest is written to Dummy Rest API with 
+ * GET and POST requests.
+ *
+ */
 public class DummyRestAPI {
 
 	static PropertiesParsers prop = new PropertiesParsers();
 	static Util util = new Util();
 	SoftAssert sa = new SoftAssert();
 
+	/**
+	 * 
+	 * @return
+	 * @throws Exception
+	 * Create the new resource using 
+	 * post request and return the response.
+	 * 
+	 */
 	public String createNewResource() throws Exception {
-
+		// Load testdata.properties file.
 		String tdf = (FilePathConstants.TESTDATA_FILE_PATH);
 		// Load specified property file.
 		prop.loadProperty(tdf);
@@ -36,6 +51,7 @@ public class DummyRestAPI {
 		prop.loadConfig();
 		// RestAPI URI.
 		String RestApiExampleBaseURL = prop.setConfig("RestApiExampleBaseURL");
+		Reporter.log("Rest Api Example Base URL: "+RestApiExampleBaseURL);
 		// Get key Values from properties file.
 		String nameVal = prop.setKey("valueOfTheName");
 		String expContectType = prop.setKey("contectType");
@@ -52,13 +68,11 @@ public class DummyRestAPI {
 				Reporter.log("Actual Status Code :" + response.getStatusCode());
 				Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
 				sa.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_200.getValue(),
-						"INFO: Status Code Validation Failed.");
-
+						"INFO: Status Code Validation Failed.");				
 				// Validate Response Headers.
 				Reporter.log("Validating Content Type & Content Encoding Values");
 				String actContentType = response.header("Content-Type");
-				util.validateContentType(actContentType, expContectType);
-
+				util.validateContentType(actContentType, expContectType);				
 				Reporter.log("Actaul Content Type : " + actContentType);
 				Reporter.log("Expcted Content Type :" + expContectType);
 
@@ -85,8 +99,15 @@ public class DummyRestAPI {
 		return response.asString();
 	}
 
+	/**
+	 * 
+	 * @throws Exception
+	 * This method is written to test whether the
+	 * new resource is creation is successful or not.
+	 * 
+	 */
 	@Test
-	public void tc02getAllEmployeeDetails() throws Exception {
+	public void tc01GetAndValidateNewResourceCreation() throws Exception {
 		// Load specified property file.
 		String tdf = (FilePathConstants.TESTDATA_FILE_PATH);
 		prop.loadProperty(tdf);
@@ -113,7 +134,7 @@ public class DummyRestAPI {
 				Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
 				sa.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_200.getValue(),
 						"INFO: Status Code Validation Failed.");
-
+				Reporter.log(response.toString());
 				// Validate Response Headers.
 				Reporter.log("Validating Content Type & Content Encoding Values");
 				// By default response time in milliseconds

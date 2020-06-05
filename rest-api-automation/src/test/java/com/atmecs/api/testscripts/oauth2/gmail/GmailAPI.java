@@ -1,4 +1,4 @@
-package com.atmecs.api.testscripts.get.oauth2.googleapitasks;
+package com.atmecs.api.testscripts.oauth2.gmail;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,15 +16,27 @@ import com.atmecs.api.utility.STATUS_CODE;
 import com.atmecs.api.utility.Util;
 import com.atmecs.utility.parser.PropertiesParsers;
 
+/**
+ * 
+ * @author Kasi.Batchu
+ * This class written to test GMAAIL DRAFT API. 
+ */
 public class GmailAPI {
 
 	PropertiesParsers prop = new PropertiesParsers();
 	Util util = new Util();
 	SoftAssert sa = new SoftAssert();
 
-	@Test
+	/**
+	 * 
+	 * @throws Exception
+	 * This method is written to get all gmail draft
+	 * list using gmail draft list api.
+	 */
+	@Test	
 	public void tc01getGmailDraftsList() throws Exception {
-
+		
+		// Load testdata.properties file.
 		String tdf = (FilePathConstants.TESTDATA_FILE_PATH);
 		prop.loadProperty(tdf);
 		// Load config
@@ -35,6 +47,7 @@ public class GmailAPI {
 		String userId = prop.setKey("userId");
 				
 		String gmailDraftURL = baseGmailURL + userId + "/drafts";
+		Reporter.log("GMAIL DRAFT API : "+gmailDraftURL);
 				
 		URL obj = new URL(gmailDraftURL);
 		Reporter.log("Base Url :" + gmailDraftURL);
@@ -42,50 +55,13 @@ public class GmailAPI {
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Authorization", "Bearer " + accessToken);
 		int responseCode = con.getResponseCode();
+		
 		// Validate status code.
 		Reporter.log("Validating Status Code");
 		Reporter.log("Actual Status Code :" + responseCode);
 		Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
 		sa.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(), "INFO: Status Code Validation Failed.");
-		// success
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer response = new StringBuffer();
-
-		while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
-		}
-		in.close();		
-		Reporter.log(response.toString());
-
-	}
-		
-	@Test
-	public void tc02getParticularGmailDraftByID() throws Exception {
-
-		String tdf = (FilePathConstants.TESTDATA_FILE_PATH);
-		prop.loadProperty(tdf);
-		// Load config
-		prop.loadConfig();
-		String accessToken = util.getTaskUrl();
-		// Get key Values from properties file.
-		String baseGmailURL = prop.setConfig("BaseGmailURL");
-		String userId = prop.setKey("userId");
-		String draftid =  prop.setKey("draftid");
-		String gmailDraftURL = baseGmailURL + userId + "/drafts"+"/"+draftid;
-		
-		URL obj = new URL(gmailDraftURL);
-		Reporter.log("Base Url :" + gmailDraftURL);
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		con.setRequestMethod("GET");
-		con.setRequestProperty("Authorization", "Bearer " + accessToken);
-		int responseCode = con.getResponseCode();
-		// Validate status code.
-		Reporter.log("Validating Status Code");
-		Reporter.log("Actual Status Code :" + responseCode);
-		Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
-		sa.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(), "INFO: Status Code Validation Failed.");
-		// success
+	
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
 		StringBuffer response = new StringBuffer();
@@ -98,9 +74,63 @@ public class GmailAPI {
 
 	}
 	
+	/**
+	 *
+	 * @throws Exception
+	 * This method is written to particular mail from Drafts
+	 * list in one's particular user id based on the ID of 
+	 * the draft.
+	 */
+		
+	@Test
+	public void tc02getParticularGmailDraftByID() throws Exception {
+		// Load testdata.properties file.
+		String tdf = (FilePathConstants.TESTDATA_FILE_PATH);
+		prop.loadProperty(tdf);
+		// Load config
+		prop.loadConfig();
+		String accessToken = util.getTaskUrl();
+		// Get key Values from properties file.
+		String baseGmailURL = prop.setConfig("BaseGmailURL");
+		String userId = prop.setKey("userId");
+		String draftid =  prop.setKey("draftid");
+		
+		String gmailDraftURL = baseGmailURL + userId + "/drafts"+"/"+draftid;
+		Reporter.log("Gmail Draft URL : "+gmailDraftURL);
+		Reporter.log("Draft ID"+draftid);
+		URL obj = new URL(gmailDraftURL);		
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("Authorization", "Bearer " + accessToken);
+		
+		int responseCode = con.getResponseCode();
+		// Validate status code.
+		Reporter.log("Validating Status Code");
+		Reporter.log("Actual Status Code :" + responseCode);
+		Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
+		sa.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(), "INFO: Status Code Validation Failed.");
+	
+		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();		
+		Reporter.log(response.toString());
+
+	}
+	
+	/**
+	 * 
+	 * @throws Exception
+	 * This method is written to create a new draft
+	 * into one's Draft Box.
+	 */
 	@Test
 	public void tc03CreateNewDraft() throws Exception {
-		
+		// Load testdata.properties file.
 		String tdf = (FilePathConstants.TESTDATA_FILE_PATH);
 		prop.loadProperty(tdf);
 		// Load config
@@ -109,6 +139,7 @@ public class GmailAPI {
 		
 		// Get key Values from properties file.
 		String baseGmailURL = prop.setConfig("BaseGmailURL");
+		Reporter.log("Gmail Draft URL : "+baseGmailURL);
 		String userId = prop.setKey("userId");		
 		String gmailDraftURL = baseGmailURL + userId + "/drafts";	
 		// Get key Values from properties file.				
@@ -146,11 +177,12 @@ public class GmailAPI {
 				in.close();
 				// print result
 				Reporter.log(response.toString());				
-				// Validates invalid range error.
+				// Validates idval in response string
+				Reporter.log("Validate Draft ID created in response string");
 				sa.assertTrue(
 						response.toString().contains(idval)
 								&& paramName.equals("id"),
-						"Doesn't required ID");
+						"Doesn't required ID");				
 			} else {
 				Reporter.log("POST NOT WORKED");
 			}

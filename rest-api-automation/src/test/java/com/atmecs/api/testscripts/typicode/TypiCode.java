@@ -1,4 +1,4 @@
-package com.atmecs.api.testscripts.get.typicode;
+package com.atmecs.api.testscripts.typicode;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -19,6 +19,12 @@ import com.jayway.jsonpath.JsonPath;
 
 import net.minidev.json.JSONArray;
 
+/**
+ * 
+ * @author Kasi.Batchu
+ * This Class  is written to test typicode 
+ * api
+ */
 public class TypiCode {
 
 	PropertiesParsers prop = new PropertiesParsers();
@@ -29,8 +35,8 @@ public class TypiCode {
 	 * 
 	 * @throws FileNotFoundException
 	 * @throws Exception
-	 *             This method is written to get count of all users present in json
-	 *             placeholder typicode.
+	 * This method is written to get count of all users present in json
+	 * placeholder typicode.
 	 */
 	@Test
 	public void tc01GetCountofAllUsers() throws FileNotFoundException, Exception {
@@ -98,6 +104,13 @@ public class TypiCode {
 		}
 	}
 
+	/**
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws Exception
+	 * This method is written to get count all 
+	 * users with id specified/given
+	 */
 	@Test
 	public void tc02GetUserCountById() throws FileNotFoundException, Exception {
 
@@ -165,6 +178,12 @@ public class TypiCode {
 		}
 	}
 
+	/**
+	 * @throws FileNotFoundException
+	 * @throws Exception
+	 * This method is written to get all ids in the usersid
+	 * list with specified/given userid
+	 */
 	@Test
 	public void tc03GetAllIdsWithParticularUserId() throws FileNotFoundException, Exception {
 		try {
@@ -225,7 +244,7 @@ public class TypiCode {
 			JSONArray idList = JsonPath.read(response.toString(), IDExpression);
 			for (int iterid = 0; iterid < idList.size(); iterid++) {
 				int idValue = (int) idList.get(iterid);		
-				System.out.println(idValue);
+				Reporter.log("UserID : 2" + "ID :"+ idValue);
 			}	
 			
 			

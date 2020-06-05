@@ -4,9 +4,9 @@
 
 	<test name="Test Cases of for GET end points with Diff Auth">
 		<classes>
-			<class name="com.atmecs.api.testscripts.get.oauth2.googleapitasks.GmailAPI" />
-			<class name="com.atmecs.api.testscripts.get.typicode.TypiCode" />
-			<class name="com.atmecs.api.testscripts.post.noauth.restapiexample.DummyRestAPI" />
+			<class name="com.atmecs.api.testscripts.oauth2.gmail.GmailAPI" />
+			<class name="com.atmecs.api.testscripts.noauth.restapiexample.DummyRestAPI" />
+			<class name="com.atmecs.api.testscripts.typicode.TypiCode" />
 		</classes>
 	</test>
 
