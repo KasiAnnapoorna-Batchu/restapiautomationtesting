@@ -31,7 +31,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import net.minidev.json.JSONArray;
 
-public class TC_01_Create_New_Resource {
+public class DummyRestAPI {
 
 	static PropertiesParsers prop = new PropertiesParsers();
 	static Util util = new Util();
