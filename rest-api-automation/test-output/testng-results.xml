@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[Validating Status Code]]>
+    </line>
+    <line>
+      <![CDATA[Actual Status Code :200]]>
+    </line>
+    <line>
+      <![CDATA[Expected Status Code:  200]]>
+    </line>
+    <line>
+      <![CDATA[Validating Content Type & Content Encoding Values]]>
+    </line>
+    <line>
+      <![CDATA[Found charset= UTF-8 in content type]]>
+    </line>
+    <line>
+      <![CDATA[Actaul Content Type : application/json;charset=utf-8]]>
+    </line>
+    <line>
+      <![CDATA[Expcted Content Type :application/json;]]>
+    </line>
+    <line>
+      <![CDATA[Response time in ms using getTime():3886]]>
+    </line>
+    <line>
+      <![CDATA[Response time in seconds using getTimeIn():3]]>
+    </line>
+    <line>
+      <![CDATA[Validating Status Code]]>
+    </line>
+    <line>
+      <![CDATA[Actual Status Code :404]]>
+    </line>
+    <line>
+      <![CDATA[Expected Status Code:  200]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2020-06-05T14:11:06Z" name="Default suite" finished-at="2020-06-05T14:11:16Z" duration-ms="9675">
+    <groups>
+    </groups>
+    <test started-at="2020-06-05T14:11:06Z" name="Default test" finished-at="2020-06-05T14:11:16Z" duration-ms="9675">
+      <class name="com.atmecs.api.testscripts.post.noauth.restapiexample.TC_01_Create_New_Resource">
+        <test-method signature="tc02getAllEmployeeDetails()[pri:0, instance:com.atmecs.api.testscripts.post.noauth.restapiexample.TC_01_Create_New_Resource@2f54a33d]" started-at="2020-06-05T14:11:06Z" name="tc02getAllEmployeeDetails" finished-at="2020-06-05T14:11:16Z" duration-ms="9632" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[INFO: Status Code Validation Failed. expected [200] but found [404]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: INFO: Status Code Validation Failed. expected [200] but found [404]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertEqualsImpl(Assert.java:137)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at org.testng.Assert.assertEquals(Assert.java:652)
+at com.atmecs.api.testscripts.post.noauth.restapiexample.TC_01_Create_New_Resource.tc02getAllEmployeeDetails(TC_01_Create_New_Resource.java:129)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+            <line>
+              <![CDATA[Validating Status Code]]>
+            </line>
+            <line>
+              <![CDATA[Actual Status Code :200]]>
+            </line>
+            <line>
+              <![CDATA[Expected Status Code:  200]]>
+            </line>
+            <line>
+              <![CDATA[Validating Content Type & Content Encoding Values]]>
+            </line>
+            <line>
+              <![CDATA[Found charset= UTF-8 in content type]]>
+            </line>
+            <line>
+              <![CDATA[Actaul Content Type : application/json;charset=utf-8]]>
+            </line>
+            <line>
+              <![CDATA[Expcted Content Type :application/json;]]>
+            </line>
+            <line>
+              <![CDATA[Response time in ms using getTime():3886]]>
+            </line>
+            <line>
+              <![CDATA[Response time in seconds using getTimeIn():3]]>
+            </line>
+            <line>
+              <![CDATA[Validating Status Code]]>
+            </line>
+            <line>
+              <![CDATA[Actual Status Code :404]]>
+            </line>
+            <line>
+              <![CDATA[Expected Status Code:  200]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- tc02getAllEmployeeDetails -->
+      </class> <!-- com.atmecs.api.testscripts.post.noauth.restapiexample.TC_01_Create_New_Resource -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

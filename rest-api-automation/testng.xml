@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="API TESTING">
+
+	<test name="Test Cases of for GET end points with Diff Auth">
+		<classes>
+			<class
+				name="com.atmecs.api.get.testscripts.noauth.googleapibooks.TC_01_Get_Books_Count" />
+			<class
+				name="com.atmecs.api.get.testscripts.noauth.googleapibooks.TC_02_Get_Books_Max_Result" />
+			<class
+				name="com.atmecs.api.get.testscripts.noauth.googleapibooks.TC_03_Get_Test_Missing_Query_Error" />
+			<class
+				name="com.atmecs.api.get.testscripts.noauth.googleapibooks.TC_04_Get_Test_InValid_Range_Error" />
+				<class
+				name="com.atmecs.api.get.testscripts.apikeyauth.googlemapplace.TC_01_Get_NearBy_Search_Places" />
+				<class
+				name="com.atmecs.api.get.testscripts.apikeyauth.googlemapplace.TC_02_Get_Place_By_Id" />
+				<class
+				name="com.atmecs.api.get.testscripts.oauth2.identserver.TC_01_Get_Response_Of_Ident_Server" />
+				
+		</classes>
+	</test>
+
+</suite>
+
