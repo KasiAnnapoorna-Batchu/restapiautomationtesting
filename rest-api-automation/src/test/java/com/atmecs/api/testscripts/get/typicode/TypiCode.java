@@ -3,15 +3,12 @@ package com.atmecs.api.testscripts.get.typicode;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
 
-import org.json.simple.JSONObject;
-import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.atmecs.api.utility.FilePathConstants;
 import com.atmecs.api.utility.STATUS_CODE;
@@ -26,6 +23,7 @@ public class TypiCode {
 
 	PropertiesParsers prop = new PropertiesParsers();
 	Util util = new Util();
+	SoftAssert sa = new SoftAssert();
 
 	/**
 	 * 
@@ -66,7 +64,7 @@ public class TypiCode {
 			Reporter.log("Validating Status Code");
 			Reporter.log("Actual Status Code :" + responseCode);
 			Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
-			Assert.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(),
+			sa.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(),
 					"INFO: Status Code Validation Failed.");
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(conection.getInputStream()));
@@ -87,7 +85,7 @@ public class TypiCode {
 			Reporter.log("Validating Total User count ");
 			Reporter.log("Actual Users Count :" + actualAllUserIdsCount);
 			Reporter.log("Expected Users Count :" + expectedAllUserCount);
-			Assert.assertEquals(actualAllUserIdsCount, expectedAllUserCount, "100 Users should be returned");
+			sa.assertEquals(actualAllUserIdsCount, expectedAllUserCount, "100 Users should be returned");
 			Reporter.log("Actual and Expected both are same");
 
 		} catch (FileNotFoundException fe) {
@@ -103,8 +101,7 @@ public class TypiCode {
 	@Test
 	public void tc02GetUserCountById() throws FileNotFoundException, Exception {
 
-		int expectedUserCountWithID2 = 10;
-		int expectedUserId = 1;
+		int expectedUserCountWithID2 = 10;		
 		Reporter.log("Get Count of all Users in json place holder typi code list");
 		try {
 
@@ -134,7 +131,7 @@ public class TypiCode {
 			Reporter.log("Validating Status Code");
 			Reporter.log("Actual Status Code :" + responseCode);
 			Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
-			Assert.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(),
+			sa.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(),
 					"INFO: Status Code Validation Failed.");
 			Reporter.log("Status Code Validation : Success");
 			BufferedReader in = new BufferedReader(new InputStreamReader(conection.getInputStream()));
@@ -155,7 +152,7 @@ public class TypiCode {
 			Reporter.log("Validating Total UserIDs count with value 2");
 			Reporter.log("Actual Users Count :" + allUserIdsWithTwoList.size());
 			Reporter.log("Expected Users Count :" + expectedUserCountWithID2);
-			Assert.assertEquals(allUserIdsWithTwoList, allUserIdsWithTwoList, "10 Users should be returned");
+			sa.assertEquals(allUserIdsWithTwoList, allUserIdsWithTwoList, "10 Users should be returned");
 			Reporter.log("Actual and Expected both are same");
 
 		} catch (FileNotFoundException fe) {
@@ -199,7 +196,7 @@ public class TypiCode {
 			Reporter.log("Validating Status Code");
 			Reporter.log("Actual Status Code :" + responseCode);
 			Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
-			Assert.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(),
+			sa.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(),
 					"INFO: Status Code Validation Failed.");
 			Reporter.log("Status Code Validation : Success");
 			BufferedReader in = new BufferedReader(new InputStreamReader(conection.getInputStream()));
@@ -209,8 +206,7 @@ public class TypiCode {
 			}
 			in.close();
 			// print result
-			Reporter.log("JSON String Result " + response.toString());
-			String allUserIDWithTwoExpr = prop.setKey("allUserIDWithTwo");
+			Reporter.log("JSON String Result " + response.toString());			
 			DocumentContext docCtx = JsonPath.parse(response.toString());
 			String userIDListWithTwo = prop.setKey("userIDListWithTwo");
 			// Compile expression
@@ -218,21 +214,21 @@ public class TypiCode {
 			JSONArray TotaluserIDValList = docCtx.read(userIDList);
 			int count = 0;
 			for (int i = 0; i < TotaluserIDValList.size(); i++) {
-				int actUserId = (int) TotaluserIDValList.get(i);
-				System.out.println(actUserId);
-				if (actUserId != expectedUserId)
-					;
+				int actUserId = (int) TotaluserIDValList.get(i);				
+				if (actUserId != expectedUserId);
 				{
 					count = count + 1;
 				}
-			}
-			System.out.println(count);
-			Assert.assertEquals(count, 0, "All User Id Value should be equal to 2");
+			}			
+			sa.assertEquals(count, 0, "All User Id Value should be equal to 2");
 			String IDExpression = prop.setKey("IDExpression");
 			JSONArray idList = JsonPath.read(response.toString(), IDExpression);
-			String idListwithUserIDTwo = idList.toString();
-			System.out.println(idListwithUserIDTwo);
-
+			for (int iterid = 0; iterid < idList.size(); iterid++) {
+				int idValue = (int) idList.get(iterid);		
+				System.out.println(idValue);
+			}	
+			
+			
 		} catch (FileNotFoundException fe) {
 			Reporter.log("File is not found in specified path: " + fe.getMessage());
 			fe.printStackTrace();

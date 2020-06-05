@@ -7,23 +7,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.json.simple.JSONObject;
-import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.atmecs.api.utility.FilePathConstants;
 import com.atmecs.api.utility.STATUS_CODE;
 import com.atmecs.api.utility.Util;
 import com.atmecs.utility.parser.PropertiesParsers;
 
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-
 public class GmailAPI {
 
 	PropertiesParsers prop = new PropertiesParsers();
 	Util util = new Util();
+	SoftAssert sa = new SoftAssert();
 
 	@Test
 	public void tc01getGmailDraftsList() throws Exception {
@@ -49,7 +46,7 @@ public class GmailAPI {
 		Reporter.log("Validating Status Code");
 		Reporter.log("Actual Status Code :" + responseCode);
 		Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
-		Assert.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(), "INFO: Status Code Validation Failed.");
+		sa.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(), "INFO: Status Code Validation Failed.");
 		// success
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
@@ -58,8 +55,7 @@ public class GmailAPI {
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
 		}
-		in.close();
-		System.out.println(response.toString());
+		in.close();		
 		Reporter.log(response.toString());
 
 	}
@@ -88,7 +84,7 @@ public class GmailAPI {
 		Reporter.log("Validating Status Code");
 		Reporter.log("Actual Status Code :" + responseCode);
 		Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
-		Assert.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(), "INFO: Status Code Validation Failed.");
+		sa.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(), "INFO: Status Code Validation Failed.");
 		// success
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
@@ -97,8 +93,7 @@ public class GmailAPI {
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
 		}
-		in.close();
-		System.out.println(response.toString());
+		in.close();		
 		Reporter.log(response.toString());
 
 	}
@@ -116,15 +111,13 @@ public class GmailAPI {
 		String baseGmailURL = prop.setConfig("BaseGmailURL");
 		String userId = prop.setKey("userId");		
 		String gmailDraftURL = baseGmailURL + userId + "/drafts";	
-		// Get key Values from properties file.		
-		String useridval = prop.setKey("useridval");
+		// Get key Values from properties file.				
 		String jsonaccepts = prop.setKey("jsonaccepts");
 		String idval = prop.setConfig("idval");
 		String paramName = "id";
 		try {
 			JSONObject payload = util.getJSONObjectFromFilePath(FilePathConstants.CREATE_DRAFT_PAYLOAD);
-			String draftPayLoad = payload.toString();
-			System.out.println(draftPayLoad);
+			String draftPayLoad = payload.toString();			
 			URL obj = new URL(gmailDraftURL);
 			HttpURLConnection postConnection = (HttpURLConnection) obj.openConnection();
 			postConnection.setRequestMethod("POST");
@@ -140,7 +133,7 @@ public class GmailAPI {
 			Reporter.log("POST Response Code :  " + responseCode);
 			Reporter.log("POST Response Message : " + postConnection.getResponseMessage());
 			Reporter.log("POST Worked ");
-			Assert.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(),
+			sa.assertEquals(responseCode, STATUS_CODE.STATUS_200.getValue(),
 					"INFO: Status Code Validation Failed.");
 
 			if (responseCode == HttpURLConnection.HTTP_CREATED) { // success
@@ -152,16 +145,12 @@ public class GmailAPI {
 				}
 				in.close();
 				// print result
-				Reporter.log(response.toString());
-				System.out.println(response.toString());
-				
+				Reporter.log(response.toString());				
 				// Validates invalid range error.
-				Assert.assertTrue(
+				sa.assertTrue(
 						response.toString().contains(idval)
 								&& paramName.equals("id"),
-						"MaxResults invalid range Error should be displayed");
-
-
+						"Doesn't required ID");
 			} else {
 				Reporter.log("POST NOT WORKED");
 			}

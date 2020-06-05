@@ -3,22 +3,13 @@ package com.atmecs.api.testscripts.post.noauth.restapiexample;
 
 import static io.restassured.RestAssured.given;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
 import java.util.concurrent.TimeUnit;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
-import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.atmecs.api.utility.FilePathConstants;
 import com.atmecs.api.utility.STATUS_CODE;
@@ -29,14 +20,12 @@ import com.jayway.jsonpath.JsonPath;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import net.minidev.json.JSONArray;
 
 public class DummyRestAPI {
 
 	static PropertiesParsers prop = new PropertiesParsers();
 	static Util util = new Util();
-
-	@Test(enabled = true)
+	SoftAssert sa = new SoftAssert();
 
 	public String createNewResource() throws Exception {
 
@@ -53,8 +42,7 @@ public class DummyRestAPI {
 
 		RestAssured.baseURI = RestApiExampleBaseURL;
 		JSONObject payload = util.getJSONObjectFromFilePath(FilePathConstants.CREATE_RESOURCE_PAYLOAD);
-		String resourcePayLoad = payload.toString();
-		System.out.println(resourcePayLoad);
+		String resourcePayLoad = payload.toString();		
 		Response response = null;
 		try {
 			response = RestAssured.given().contentType(ContentType.JSON).body(resourcePayLoad).post("/create");
@@ -63,7 +51,7 @@ public class DummyRestAPI {
 				Reporter.log("Validating Status Code");
 				Reporter.log("Actual Status Code :" + response.getStatusCode());
 				Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
-				Assert.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_200.getValue(),
+				sa.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_200.getValue(),
 						"INFO: Status Code Validation Failed.");
 
 				// Validate Response Headers.
@@ -84,7 +72,7 @@ public class DummyRestAPI {
 
 				// Validate new resource creation.
 				boolean namecontains = response.asString().contains(nameVal);
-				Assert.assertTrue(namecontains, "Name Should exists in the List");
+				sa.assertTrue(namecontains, "Name Should exists in the List");
 
 			}
 		}
@@ -107,14 +95,14 @@ public class DummyRestAPI {
 		String responseStringfromPost = createNewResource();
 		String idgetval = prop.setKey("idgetval");
 		int idval = JsonPath.read(responseStringfromPost, idgetval);
-		System.out.println(idval);
+		
 		String RestApiExampleBaseURL = prop.setConfig("RestApiExampleBaseURL");
 		RestAssured.baseURI = RestApiExampleBaseURL;
 
 		Response response = null;
 
 		try {
-			System.out.println(RestApiExampleBaseURL + "/employees/" + idval);
+			Reporter.log(RestApiExampleBaseURL + "/employees/" + idval);
 			response = given().when().get(RestApiExampleBaseURL + "/employee/" + idval);
 			// response =
 			// RestAssured.given().contentType(ContentType.JSON).get("/employees/idval");
@@ -123,7 +111,7 @@ public class DummyRestAPI {
 				Reporter.log("Validating Status Code");
 				Reporter.log("Actual Status Code :" + response.getStatusCode());
 				Reporter.log("Expected Status Code:  " + STATUS_CODE.STATUS_200.getValue());
-				Assert.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_200.getValue(),
+				sa.assertEquals(response.getStatusCode(), STATUS_CODE.STATUS_200.getValue(),
 						"INFO: Status Code Validation Failed.");
 
 				// Validate Response Headers.

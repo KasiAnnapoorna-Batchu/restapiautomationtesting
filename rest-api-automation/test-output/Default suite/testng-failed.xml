@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.atmecs.api.testscripts.post.noauth.restapiexample.TC_01_Create_New_Resource">
+      <class name="com.atmecs.api.testscripts.post.noauth.restapiexample.DummyRestAPI">
         <methods>
           <include name="tc02getAllEmployeeDetails"/>
         </methods>
-      </class> <!-- com.atmecs.api.testscripts.post.noauth.restapiexample.TC_01_Create_New_Resource -->
+      </class> <!-- com.atmecs.api.testscripts.post.noauth.restapiexample.DummyRestAPI -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
